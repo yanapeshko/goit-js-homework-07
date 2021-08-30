@@ -1,18 +1,7 @@
-let inputVal = document.getElementById('validation-input');
+const changingFont = document.getElementById('font-size-control');
 
-let totalLenght = inputVal.getAttribute('data-length');
-let intTotallenght = parseInt(totalLenght, 10);
+const text = document.getElementById('text');
 
-inputVal.oninput = function () {
-  if (inputVal.value.length === intTotallenght) {
-    inputVal.classList.remove('invalid');
-    inputVal.classList.add('valid');
-  }
-  if (inputVal.value.length === 0) {
-    inputVal.classList.remove('valid');
-    inputVal.classList.remove('invalid');
-  }
-  if (inputVal.value.length !== intTotallenght && inputVal.value.length !== 0) {
-    inputVal.classList.add('invalid');
-  }
+changingFont.oninput = function () {
+  text.style.fontSize = changingFont.value + 'px';
 };
