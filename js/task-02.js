@@ -7,15 +7,15 @@ const ingredients = [
   'Приправы',
 ];
 
-const ingredientsContainerEl = document.querySelector('#ingredients');
+const ingredientContainerEl = document.querySelector('#ingredients');
 
-const elements = ingredients.map(ingredient => {
-  const ingredientEl = document.createElement('li');
-  ingredientEl.textContent = ingredient;
-
-  return ingredientEl;
-});
-console.log(elements);
-
-ingredientsContainerEl.append(...elements);
-ingredientsContainerEl.setAttribute('style', 'list-style-type:none;');
+const makeItems = items => {
+  return items.map(item => {
+    const ingredientEl = document.createElement('li');
+    ingredientEl.textContent = item;
+    return ingredientEl;
+  });
+};
+const elements = makeItems(ingredients);
+ingredientContainerEl.append(...elements);
+// console.log(elements);

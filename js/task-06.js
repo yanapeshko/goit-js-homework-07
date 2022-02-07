@@ -1,18 +1,29 @@
-const inputVal = document.getElementById('validation-input');
+// Напиши скрипт, который бы при потере фокуса на инпуте, проверял его содержимое
+// на правильное количество символов.
 
-const totalLenght = inputVal.getAttribute('data-length');
-const intTotallenght = parseInt(totalLenght, 10);
+// ```html
+// <input
+//   type="text"
+//   id="validation-input"
+//   data-length="6"
+//   placeholder="Введи 6 символов"
+// />
+// ```
 
-inputVal.oninput = function () {
-  if (inputVal.value.length === intTotallenght) {
-    inputVal.classList.remove('invalid');
-    inputVal.classList.add('valid');
+// - Сколько символов должно быть в инпуте, указывается в его атрибуте
+//   `data-length`.
+
+// Для добавления стилей, используй CSS-классы `valid` и `invalid`.
+const input = document.querySelector('#validation-input');
+// - Если введено подходящее количество, то `border` инпута становится зеленым,
+//   если неправильное - красным.
+
+input.addEventListener('blur', () => {
+  if (input.value.length === 6) {
+    input.classList.add('valid');
+    input.classList.remove('invalid');
+  } else {
+    input.classList.add('invalid');
+    input.classList.remove('valid');
   }
-  if (inputVal.value.length === 0) {
-    inputVal.classList.remove('valid');
-    inputVal.classList.remove('invalid');
-  }
-  if (inputVal.value.length !== intTotallenght && inputVal.value.length !== 0) {
-    inputVal.classList.add('invalid');
-  }
-};
+});

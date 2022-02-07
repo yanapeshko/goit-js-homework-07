@@ -13,12 +13,21 @@ const images = [
   },
 ];
 
-const createGalleryItem = ({ url, alt }) =>
-  `<li><img src="${url}" alt="${alt}" width = 200 height = 150></li>`;
-const galleryMarkup = images.reduce(
-  (acc, item) => acc + createGalleryItem(item),
-  ''
-);
-const galleryList = document.querySelector('#gallery');
-galleryList.insertAdjacentHTML('afterbegin', galleryMarkup);
-galleryList.setAttribute('style', 'list-style-type:none; display: flex;');
+// Используй массив объектов `images` для создания тегов `img` вложенных в `li`.
+// Для создания разметки используй шаблонные строки и `insertAdjacentHTML()`.
+
+const makeImagesMarkup = image => {
+  const { url, alt } = image;
+
+  return `
+  <li style='display:flex; flex-direction: row; margin:10px; width: 30%'>
+  <img src = '${url}' alt = '${alt}' style = 'display:block; width: 100%;'>
+  </li>
+  `;
+};
+
+const imageEl = document.querySelector('#gallery');
+imageEl.style.display = 'flex';
+const makeImageRows = images.map(makeImagesMarkup).join('');
+
+imageEl.insertAdjacentHTML('beforeend', makeImageRows);
